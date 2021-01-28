@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'event-thumbnail',
@@ -9,17 +9,29 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
     <div>Price: \${{ event.price }}</div>
     <div>
       <span>Location: {{ event.location.address }}</span>
-      <span>&nbsp; </span>
-      <span>{{ event.location.city }}, {{ event.location.country }}</span>
+      <span class="pad-left"
+        >{{ event.location.city }}, {{ event.location.country }}</span
+      >
     </div>
   </div>`,
+  styles: [
+    `
+      .well div {
+        color: #bbb;
+      }
+
+      .pad-left {
+        margin-left: 10px;
+      }
+
+      .thumbnail {
+        min-height: 210px;
+      }
+    `,
+  ],
 })
 export class EventThumbnailComponent {
   @Input() event: any;
   parentTitle: string = 'Upcoming Angular 2 Events';
-
-
-  public changeTitle(): string {
-    return this.parentTitle;
-  }
+  @Input() fn: any;
 }
