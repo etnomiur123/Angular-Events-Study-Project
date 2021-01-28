@@ -1,15 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'events-list',
   template: ` <div>
-    <h1>Upcoming Angular 2 Events</h1>
+    <h1>{{title}}</h1>
     <hr />
-    <event-thumbnail [event]="event"></event-thumbnail>
-  </div>`,
+    <event-thumbnail #thumbnail
+      [event]="event1"
+    ></event-thumbnail>
+    <button class="btn btn-primary" (click)='handleClick(thumbnail)'>click</button>
+  </div>`
 })
 export class EventsListComponent {
-  public event = {
+  public event1 = {
     date: '9/26/2036',
     id: 1,
     imageUrl: '/assets/images/angularconnect-shield.png',
@@ -22,4 +25,10 @@ export class EventsListComponent {
     price: 599.99,
     time: '10:00 am',
   };
+
+  public title: string = 'Angular Events';
+
+  public handleClick(thumbnail): void {
+    this.title = thumbnail.changeTitle();
+  }
 }

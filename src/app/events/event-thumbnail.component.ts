@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'event-thumbnail',
@@ -16,4 +16,10 @@ import { Component, Input } from '@angular/core';
 })
 export class EventThumbnailComponent {
   @Input() event: any;
+  parentTitle: string = 'Upcoming Angular 2 Events';
+
+
+  public changeTitle(): string {
+    return this.parentTitle;
+  }
 }
